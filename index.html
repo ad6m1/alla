@@ -1,12 +1,10 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>AI Creator Console</title>
-
   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
-
   <style>
     :root{
       --bg:#020617;
@@ -111,7 +109,7 @@
       margin-top:10px;
     }
 
-    /* ===== الإضافة فقط ===== */
+    /* ===== تصحيح زر ذكرني ===== */
     .btn-connect{
       background:linear-gradient(135deg,#38bdf8,#22c55e);
       color:#022c22;
@@ -136,7 +134,7 @@
       height:16px;
       margin:0;
     }
-    /* ====================== */
+    /* ======================== */
 
     .nav{
       display:flex;
@@ -152,6 +150,7 @@
     .dots span{
       animation:blink 1.4s infinite both;
     }
+
     .dots span:nth-child(2){animation-delay:.2s}
     .dots span:nth-child(3){animation-delay:.4s}
 
@@ -184,191 +183,215 @@
     .hidden{display:none}
   </style>
 </head>
-
 <body>
-
-<div class="app">
-
-  <!-- LOGIN -->
-  <div class="layout" id="loginPage">
-    <div class="brand">
-      <h1>AI Creator Console</h1>
-      <p>
-        نظام نشر أخطبوطي ذكي يعتمد الأتمتة والذكاء الاصطناعي
-        لإدارة ونشر المحتوى عبر منصات التواصل الاجتماعي.
-      </p>
-      <a onclick="openDisclaimer()">إخلاء المسؤولية</a>
-    </div>
-
-    <div class="panel">
-      <p>يسمح فقط بإيميلات ahmedmarketing.cloud</p>
-      <input id="emailInput" placeholder="name@ahmedmarketing.cloud">
-      <input id="codeInput" type="password" placeholder="الرمز">
-
-      <!-- ===== الإضافة فقط ===== -->
-      <label class="remember">
-        <input type="checkbox" id="rememberMe">
-        <span>تذكرني لمدة 30 يوم</span>
-      </label>
-      <!-- ====================== -->
-
-      <button class="btn-main" onclick="login()">دخول</button>
-    </div>
-  </div>
-
-  <!-- APP -->
-  <div class="layout hidden" id="appPage">
-
-    <div class="brand">
-      <h1>Smart Publishing</h1>
-      <p>تحكم كامل بعملية النشر، تتبع، وأتمتة بدون تدخل بشري.</p>
-    </div>
-
-    <div class="panel">
-
-      <!-- ===== الإضافة فقط ===== -->
-      <a
-        href="https://app.upload-post.com/connect?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJyaG0ud29yazFAZ21haWwuY29tIiwicHJvZmlsZV91c2VybmFtZSI6ImFsbGFmaXRuaXMiLCJleHAiOjE3NzA1OTk3MjgsImlhdCI6MTc3MDQyNjkyOH0.Z_KiS7KrLX4p_yAXgPFh-0O76fTRzbpAl8MILrOhbNc"
-        target="_blank"
-      >
-        <button class="btn-connect">
-          🔗 ربط حسابات مواقع التواصل الاجتماعي
-        </button>
-      </a>
-      <!-- ====================== -->
-
-      <div class="nav">
-        <button onclick="go('publish')">النشر</button>
-        <button onclick="go('history')">السجل</button>
-        <button onclick="logout()" style="background:#ef4444;color:#fff">خروج</button>
+  <div class="app">
+    <!-- LOGIN -->
+    <div class="layout" id="loginPage">
+      <div class="brand">
+        <h1>AI Creator Console</h1>
+        <p>
+          نظام نشر أخطبوطي ذكي يعتمد الأتمتة والذكاء الاصطناعي لإدارة ونشر المحتوى عبر منصات التواصل الاجتماعي.
+        </p>
+        <a onclick="openDisclaimer()">إخلاء المسؤولية</a>
       </div>
+      <div class="panel">
+        <p>يسمح فقط بإيميلات ahmedmarketing.cloud</p>
+        <input id="emailInput" placeholder="name@ahmedmarketing.cloud">
+        <input id="codeInput" type="password" placeholder="الرمز">
+        <!-- ===== تصحيح زر ذكرني ===== -->
+        <label class="remember">
+          <input type="checkbox" id="rememberMe">
+          <span>تذكرني لمدة 30 يوم</span>
+        </label>
+        <!-- ======================== -->
+        <button class="btn-main" onclick="login()">دخول</button>
+      </div>
+    </div>
 
-      <!-- PUBLISH -->
-      <div id="publishPage">
-        <input type="file" id="mediaInput">
-
-        <select id="postType" onchange="toggleCaption()">
-          <option value="">اختر نوع النشر</option>
-          <option value="reels">ريلز</option>
-          <option value="story">ستوري</option>
-          <option value="both">ريلز + ستوري</option>
-        </select>
-
-        <textarea id="captionInput" class="hidden" placeholder="الوصف (للريلز فقط)"></textarea>
-
-        <button class="btn-main" onclick="publish()">رفع ونشر</button>
-        <div id="statusText"></div>
-
-        <a href="https://www.instagram.com/8jy8/" target="_blank">
-          <button class="btn-instagram">الدخول إلى إنستغرام</button>
+    <!-- APP -->
+    <div class="layout hidden" id="appPage">
+      <div class="brand">
+        <h1>Smart Publishing</h1>
+        <p>تحكم كامل بعملية النشر، تتبع، وأتمتة بدون تدخل بشري.</p>
+      </div>
+      <div class="panel">
+        <!-- ===== الإضافة فقط ===== -->
+        <a href="https://app.upload-post.com/connect?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJyaG0ud29yazFAZ21haWwuY29tIiwicHJvZmlsZV91c2VybmFtZSI6ImFsbGFmaXRuaXMiLCJleHAiOjE3NzA1OTk3MjgsImlhdCI6MTc3MDQyNjkyOH0.Z_KiS7KrLX4p_yAXgPFh-0O76fTRzbpAl8MILrOhbNc" target="_blank" >
+          <button class="btn-connect">
+            🔗 ربط حسابات مواقع التواصل الاجتماعي
+          </button>
         </a>
+        <!-- ====================== -->
+        <div class="nav">
+          <button onclick="go('publish')">النشر</button>
+          <button onclick="go('history')">السجل</button>
+          <button onclick="logout()" style="background:#ef4444;color:#fff">خروج</button>
+        </div>
+
+        <!-- PUBLISH -->
+        <div id="publishPage">
+          <input type="file" id="mediaInput">
+          <select id="postType" onchange="toggleCaption()">
+            <option value="">اختر نوع النشر</option>
+            <option value="reels">ريلز</option>
+            <option value="story">ستوري</option>
+            <option value="both">ريلز + ستوري</option>
+          </select>
+          <textarea id="captionInput" class="hidden" placeholder="الوصف (للريلز فقط)"></textarea>
+          <button class="btn-main" onclick="publish()">رفع ونشر</button>
+          <div id="statusText"></div>
+          <a href="https://www.instagram.com/8jy8/" target="_blank">
+            <button class="btn-instagram">الدخول إلى إنستغرام</button>
+          </a>
+        </div>
+
+        <div id="historyPage" class="hidden"></div>
       </div>
-
-      <div id="historyPage" class="hidden"></div>
-
     </div>
   </div>
-</div>
 
-<!-- DISCLAIMER -->
-<div class="modal" id="disclaimer">
-  <div class="modal-content">
-    <h2>إخلاء مسؤولية</h2>
-    <p>هذا النظام هو أداة أتمتة ذكية تهدف إلى تسهيل وتسريع عمليات النشر عبر منصات التواصل الاجتماعي.</p>
-    <p>لا يتحمل النظام أو مطوّروه أي مسؤولية قانونية أو تقنية ناتجة عن:</p>
-    <ul>
-      <li>مخالفة سياسات أي منصة تواصل اجتماعي</li>
-      <li>استخدام محتوى غير مرخّص أو مخالف</li>
-      <li>حظر الحسابات أو تقييدها</li>
-    </ul>
-    <p>المستخدم هو المسؤول الوحيد عن مراجعة المحتوى والتأكد من توافقه مع سياسات المنصات.</p>
-    <button class="btn-main" onclick="closeDisclaimer()">فهمت</button>
+  <!-- DISCLAIMER -->
+  <div class="modal" id="disclaimer">
+    <div class="modal-content">
+      <h2>إخلاء مسؤولية</h2>
+      <p>هذا النظام هو أداة أتمتة ذكية تهدف إلى تسهيل وتسريع عمليات النشر عبر منصات التواصل الاجتماعي.</p>
+      <p>لا يتحمل النظام أو مطوّروه أي مسؤولية قانونية أو تقنية ناتجة عن:</p>
+      <ul>
+        <li>مخالفة سياسات أي منصة تواصل اجتماعي</li>
+        <li>استخدام محتوى غير مرخّص أو مخالف</li>
+        <li>حظر الحسابات أو تقييدها</li>
+      </ul>
+      <p>المستخدم هو المسؤول الوحيد عن مراجعة المحتوى والتأكد من توافقه مع سياسات المنصات.</p>
+      <button class="btn-main" onclick="closeDisclaimer()">فهمت</button>
+    </div>
   </div>
-</div>
 
-<script>
-const USERS={
-  "admin@ahmedmarketing.cloud":{code:"AM-ADMIN-9007"},
-  "ali@ahmedmarketing.cloud":{code:"AM-ALI-7391"},
-  "sara@ahmedmarketing.cloud":{code:"AM-SARA-4826"}
-};
+  <script>
+    const USERS = {
+      "admin@ahmedmarketing.cloud": {code: "AM-ADMIN-9007"},
+      "ali@ahmedmarketing.cloud": {code: "AM-ALI-7391"},
+      "sara@ahmedmarketing.cloud": {code: "AM-SARA-4826"}
+    };
 
-let currentUserEmail = "";
+    let currentUserEmail = "";
 
-function login(){
-  const email=emailInput.value.trim().toLowerCase();
-  const code=codeInput.value.trim();
+    // ===== تصحيح: وظائف تذكرني الجديدة =====
+    function saveLoginData(email, code) {
+      const expiryDate = new Date();
+      expiryDate.setDate(expiryDate.getDate() + 30);
+      
+      localStorage.setItem("savedEmail", email);
+      localStorage.setItem("savedCode", code);
+      localStorage.setItem("saveExpiry", expiryDate.getTime());
+    }
 
-  if(!USERS[email] || USERS[email].code!==code){
-    alert("بيانات غير صحيحة");
-    return;
-  }
+    function clearLoginData() {
+      localStorage.removeItem("savedEmail");
+      localStorage.removeItem("savedCode");
+      localStorage.removeItem("saveExpiry");
+    }
 
-  currentUserEmail = email;
+    function loadSavedLogin() {
+      const savedEmail = localStorage.getItem("savedEmail");
+      const savedCode = localStorage.getItem("savedCode");
+      const saveExpiry = localStorage.getItem("saveExpiry");
 
-  loginPage.classList.add("hidden");
-  appPage.classList.remove("hidden");
-  go("publish");
-}
+      if (!savedEmail || !savedCode || !saveExpiry) return;
 
-function logout(){
-  location.reload();
-}
-
-function go(page){
-  publishPage.classList.add("hidden");
-  historyPage.classList.add("hidden");
-
-  if(page==="publish") publishPage.classList.remove("hidden");
-  else historyPage.classList.remove("hidden");
-}
-
-function toggleCaption(){
-  captionInput.classList.toggle(
-    "hidden",
-    postType.value==="story" || !postType.value
-  );
-}
-
-async function publish(){
-  if(!mediaInput.files.length || !postType.value){
-    alert("أكمل البيانات");
-    return;
-  }
-
-  statusText.innerHTML =
-    'قيد النشر <span class="dots"><span>.</span><span>.</span><span>.</span></span>';
-
-  const formData = new FormData();
-  formData.append("file", mediaInput.files[0]);
-  formData.append("postType", postType.value);
-  formData.append("caption", captionInput.value || "");
-  formData.append("userEmail", currentUserEmail);
-
-  try{
-    const res = await fetch(
-      "https://n8n.srv1099752.hstgr.cloud/webhook-test/upload-video12",
-      {
-        method:"POST",
-        body:formData
+      // تحقق من انتهاء الصلاحية
+      if (new Date().getTime() > parseInt(saveExpiry)) {
+        clearLoginData();
+        return;
       }
-    );
 
-    if(!res.ok) throw new Error("Webhook failed");
+      // ملء الحقول
+      emailInput.value = savedEmail;
+      codeInput.value = savedCode;
+      rememberMe.checked = true;
+    }
+    // ==========================================
 
-    statusText.innerHTML="✅ تم إرسال المحتوى إلى النظام";
-  }catch(err){
-    statusText.innerHTML="❌ فشل الإرسال إلى النظام";
-  }
-}
+    function login() {
+      const email = emailInput.value.trim().toLowerCase();
+      const code = codeInput.value.trim();
 
-function openDisclaimer(){
-  disclaimer.style.display="flex";
-}
-function closeDisclaimer(){
-  disclaimer.style.display="none";
-}
-</script>
+      if (!USERS[email] || USERS[email].code !== code) {
+        alert("بيانات غير صحيحة");
+        return;
+      }
 
+      // ===== تصحيح: حفظ البيانات إذا تم تفعيل تذكرني =====
+      if (rememberMe.checked) {
+        saveLoginData(email, code);
+      } else {
+        clearLoginData();
+      }
+      // ================================================
+
+      currentUserEmail = email;
+      loginPage.classList.add("hidden");
+      appPage.classList.remove("hidden");
+      go("publish");
+    }
+
+    function logout() {
+      clearLoginData();
+      location.reload();
+    }
+
+    function go(page) {
+      publishPage.classList.add("hidden");
+      historyPage.classList.add("hidden");
+      if (page === "publish") publishPage.classList.remove("hidden");
+      else historyPage.classList.remove("hidden");
+    }
+
+    function toggleCaption() {
+      captionInput.classList.toggle(
+        "hidden",
+        postType.value === "story" || !postType.value
+      );
+    }
+
+    async function publish() {
+      if (!mediaInput.files.length || !postType.value) {
+        alert("أكمل البيانات");
+        return;
+      }
+
+      statusText.innerHTML = 'قيد النشر <span class="dots"><span>.</span><span>.</span><span>.</span></span>';
+      const formData = new FormData();
+      formData.append("file", mediaInput.files[0]);
+      formData.append("postType", postType.value);
+      formData.append("caption", captionInput.value || "");
+      formData.append("userEmail", currentUserEmail);
+
+      try {
+        const res = await fetch(
+          "https://n8n.srv1099752.hstgr.cloud/webhook-test/upload-video12",
+          {
+            method: "POST",
+            body: formData
+          }
+        );
+        if (!res.ok) throw new Error("Webhook failed");
+        statusText.innerHTML = "✅ تم إرسال المحتوى إلى النظام";
+      } catch (err) {
+        statusText.innerHTML = "❌ فشل الإرسال إلى النظام";
+      }
+    }
+
+    function openDisclaimer() {
+      disclaimer.style.display = "flex";
+    }
+
+    function closeDisclaimer() {
+      disclaimer.style.display = "none";
+    }
+
+    // ===== تصحيح: تحميل البيانات المحفوظة عند فتح الصفحة =====
+    window.addEventListener("DOMContentLoaded", loadSavedLogin);
+    // ===================================================
+  </script>
 </body>
 </html>
